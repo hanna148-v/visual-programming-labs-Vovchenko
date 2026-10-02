@@ -1,0 +1,80 @@
+[
+    {
+        "id": "3a9d91615facda5f",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "10e8d907beedcb84",
+        "type": "inject",
+        "z": "3a9d91615facda5f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 680,
+        "wires": [
+            [
+                "076b7c33ad10d407"
+            ]
+        ]
+    },
+    {
+        "id": "076b7c33ad10d407",
+        "type": "http request",
+        "z": "3a9d91615facda5f",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.chucknorris.io/jokes/random",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 680,
+        "wires": [
+            [
+                "01bbc90aa177dcba"
+            ]
+        ]
+    },
+    {
+        "id": "01bbc90aa177dcba",
+        "type": "debug",
+        "z": "3a9d91615facda5f",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 680,
+        "wires": []
+    }
+]

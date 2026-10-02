@@ -1,0 +1,141 @@
+[
+    {
+        "id": "485d35722b023b91",
+        "type": "tab",
+        "label": "Flow 11",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "52d2f0d2d1f8711a",
+        "type": "inject",
+        "z": "485d35722b023b91",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 280,
+        "wires": [
+            [
+                "91aee4ce43a8291f"
+            ]
+        ]
+    },
+    {
+        "id": "91aee4ce43a8291f",
+        "type": "function",
+        "z": "485d35722b023b91",
+        "name": "function 7",
+        "func": "const now = new Date().toISOString();\nconst logEntry = {\n    timestamp: now,\n    student: \"vovchenko\",\n    event: \"User logged in\"\n};\n\n// Превращаем объект в строку JSON и добавляем перенос строки \\n\nmsg.payload = JSON.stringify(logEntry) + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 280,
+        "wires": [
+            [
+                "726569e5c4c97158"
+            ]
+        ]
+    },
+    {
+        "id": "726569e5c4c97158",
+        "type": "file",
+        "z": "485d35722b023b91",
+        "name": "",
+        "filename": "/data/log.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 490,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3d9ec9978206c26",
+        "type": "file in",
+        "z": "485d35722b023b91",
+        "name": "",
+        "filename": "/data/log.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "763491363f774f90"
+            ]
+        ]
+    },
+    {
+        "id": "7382f48bfc1e3b14",
+        "type": "inject",
+        "z": "485d35722b023b91",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "a3d9ec9978206c26"
+            ]
+        ]
+    },
+    {
+        "id": "763491363f774f90",
+        "type": "debug",
+        "z": "485d35722b023b91",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 360,
+        "wires": []
+    }
+]

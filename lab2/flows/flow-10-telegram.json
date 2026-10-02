@@ -1,0 +1,157 @@
+[
+    {
+        "id": "5b16b1eea3f7906e",
+        "type": "tab",
+        "label": "Flow 10",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b51c6ce1308684ea",
+        "type": "telegram receiver",
+        "z": "5b16b1eea3f7906e",
+        "name": "",
+        "bot": "aa63280c7b263082",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "3958629c97a7a29c"
+            ],
+            [
+                "3958629c97a7a29c"
+            ]
+        ]
+    },
+    {
+        "id": "74a699cdf7ae480e",
+        "type": "telegram sender",
+        "z": "5b16b1eea3f7906e",
+        "name": "",
+        "bot": "aa63280c7b263082",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3958629c97a7a29c",
+        "type": "function",
+        "z": "5b16b1eea3f7906e",
+        "name": "function 6",
+        "func": "const text = msg.payload.content;\nconst chatId = msg.payload.chatId;\n\n// Режим хранится отдельно для каждого чата\nlet mode = context.get(\"mode_\" + chatId) || \"cat\";\n\nif (text === \"/start\") {\n    mode = \"cat\";\n    msg.payload.content = \"кошки кошки кошки(/dog)\";\n}\nelse if (text === \"/dog\") {\n    mode = \"dog\";\n    msg.payload.content = \"собачки собачки собачки(/start)\";\n}\n\nelse {\n    if (mode === \"cat\") {\n        msg.payload.content = \"кошки говорят: \" + text;\n    } else {\n        msg.payload.content = \"собачки говорят: \" + text;\n    }\n}\n\ncontext.set(\"mode_\" + chatId, mode);\n\nmsg.payload.chatId = chatId;\nmsg.payload.type = \"message\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "74a699cdf7ae480e"
+            ]
+        ]
+    },
+    {
+        "id": "e4e9b9ed8ccbd774",
+        "type": "telegram receiver",
+        "z": "5b16b1eea3f7906e",
+        "name": "",
+        "bot": "aa63280c7b263082",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "f767976478ea8dcc"
+            ],
+            [
+                "b943c70fac5787e6"
+            ]
+        ]
+    },
+    {
+        "id": "f767976478ea8dcc",
+        "type": "debug",
+        "z": "5b16b1eea3f7906e",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "b943c70fac5787e6",
+        "type": "debug",
+        "z": "5b16b1eea3f7906e",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "aa63280c7b263082",
+        "type": "telegram bot",
+        "botname": "tvl_lab2_vovchenko_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "48f907b8ce46b57a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]

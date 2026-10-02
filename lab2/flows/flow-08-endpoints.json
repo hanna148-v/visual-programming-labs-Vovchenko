@@ -1,0 +1,157 @@
+[
+    {
+        "id": "4735bc331f959c61",
+        "type": "tab",
+        "label": "Flow 8",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3d31af1cbdca315e",
+        "type": "http in",
+        "z": "4735bc331f959c61",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "09d17eb6a32f025c"
+            ]
+        ]
+    },
+    {
+        "id": "09d17eb6a32f025c",
+        "type": "function",
+        "z": "4735bc331f959c61",
+        "name": "function 1",
+        "func": "msg.payload = \"кошки\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 620,
+        "wires": [
+            [
+                "d210131c989232e5"
+            ]
+        ]
+    },
+    {
+        "id": "d210131c989232e5",
+        "type": "http response",
+        "z": "4735bc331f959c61",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "fd33740dce9d6521",
+        "type": "http in",
+        "z": "4735bc331f959c61",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 680,
+        "wires": [
+            [
+                "f4d5703d10796dc4"
+            ]
+        ]
+    },
+    {
+        "id": "6fe9862db995b2de",
+        "type": "http response",
+        "z": "4735bc331f959c61",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "f4d5703d10796dc4",
+        "type": "function",
+        "z": "4735bc331f959c61",
+        "name": "function 2",
+        "func": "msg.payload = {\n    student: \"hanna vovchenko\",\n    course: \"visual programming\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "6fe9862db995b2de"
+            ]
+        ]
+    },
+    {
+        "id": "ee0b47e439c1434e",
+        "type": "function",
+        "z": "4735bc331f959c61",
+        "name": "function 3",
+        "func": "// Получаем параметр id из query (?id=...)\nconst itemId = msg.req.query.id;\n\nif (!itemId) {\n    // Ошибка 400: параметр не передан\n    msg.statusCode = 400;\n    msg.payload = { error: \"Bad Request: параметр 'id' обязателен\" };\n} else if (itemId === \"404\") {\n    // Имитация ошибки 404: элемент не найден\n    msg.statusCode = 404;\n    msg.payload = { error: \"Not Found: элемент с таким id не найден\" };\n} else {\n    // Успешный ответ 200\n    msg.statusCode = 200;\n    msg.payload = {\n        id: itemId,\n        title: \"Товар #\" + itemId,\n        status: \"Available\"\n    };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 740,
+        "wires": [
+            [
+                "b7655a6dded89869"
+            ]
+        ]
+    },
+    {
+        "id": "ba029f2d4f96888e",
+        "type": "http in",
+        "z": "4735bc331f959c61",
+        "name": "",
+        "url": "/api/items",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 740,
+        "wires": [
+            [
+                "ee0b47e439c1434e"
+            ]
+        ]
+    },
+    {
+        "id": "b7655a6dded89869",
+        "type": "http response",
+        "z": "4735bc331f959c61",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 740,
+        "wires": []
+    }
+]

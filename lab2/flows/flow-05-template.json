@@ -1,0 +1,75 @@
+[
+    {
+        "id": "585c9131c7fba112",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "136f64cd635002dc",
+        "type": "inject",
+        "z": "585c9131c7fba112",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{   \"user\": \"hanna\",  \"course\": \"visual programming\" }",
+        "payloadType": "json",
+        "x": 230,
+        "y": 580,
+        "wires": [
+            [
+                "841811cf06a2aaef"
+            ]
+        ]
+    },
+    {
+        "id": "e150fd860f0ee834",
+        "type": "debug",
+        "z": "585c9131c7fba112",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "841811cf06a2aaef",
+        "type": "template",
+        "z": "585c9131c7fba112",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"student_name\": \"{{payload.user}}\",\n    \"subject\": \"{{payload.course}}\",\n    \"status\": \"Submitted\"\n}",
+        "output": "str",
+        "x": 400,
+        "y": 580,
+        "wires": [
+            [
+                "e150fd860f0ee834"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,76 @@
+[
+    {
+        "id": "985dc54db7fe36f2",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "83972a6f30475eaf",
+        "type": "inject",
+        "z": "985dc54db7fe36f2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 230,
+        "y": 560,
+        "wires": [
+            [
+                "7e9432d575bf05d9"
+            ]
+        ]
+    },
+    {
+        "id": "7e9432d575bf05d9",
+        "type": "function",
+        "z": "985dc54db7fe36f2",
+        "name": "расчет скидки",
+        "func": "// Массив цен товаров\nconst prices = [100, 250, 400, 150];\nlet totalSum = 0;\n\n// Цикл for для подсчета суммы\nfor (let i = 0; i < prices.length; i++) {\n    totalSum += prices[i];\n}\n\n// Проверка условия через if/else\nlet discount = 0;\nif (totalSum > 500) {\n    discount = 0.15; // 15% скидка\n} else {\n    discount = 0.05; // 5% скидка\n}\n\nconst finalPrice = totalSum * (1 - discount);\n\n// Возвращаем объект с результатом\nmsg.payload = {\n    student: \"Hanna\", // Твоё имя/фамилия\n    totalSum: totalSum,\n    discountPercent: discount * 100,\n    finalPrice: finalPrice,\n    status: finalPrice > 500 ? \"HIGH\" : \"LOW\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "be8e0ec4a6b8bc39"
+            ]
+        ]
+    },
+    {
+        "id": "be8e0ec4a6b8bc39",
+        "type": "debug",
+        "z": "985dc54db7fe36f2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 560,
+        "wires": []
+    }
+]

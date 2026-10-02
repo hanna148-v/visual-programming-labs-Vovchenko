@@ -1,0 +1,75 @@
+[
+    {
+        "id": "b4347031b9923599",
+        "type": "tab",
+        "label": "Flow 12",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "196eaa34b27f7564",
+        "type": "inject",
+        "z": "b4347031b9923599",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 480,
+        "wires": [
+            [
+                "46611a1019e5cbf2"
+            ]
+        ]
+    },
+    {
+        "id": "46611a1019e5cbf2",
+        "type": "function",
+        "z": "b4347031b9923599",
+        "name": "function 8",
+        "func": "// Достаем из context счетчик, если его нет — ставим 0\nlet count = flow.get(\"counter\") || 0;\n\n// Увеличиваем на 1 при каждом клике\ncount++;\n\n// Сохраняем обновленное значение обратно в flow context\nflow.set(\"counter\", count);\n\n// Формируем выводимый payload\nmsg.payload = {\n    student: \"Hanna Vovchenko\",\n    click_count: count,\n    message: \"Кнопка была нажата раз: \" + count\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "fcf52f8bb46401fb"
+            ]
+        ]
+    },
+    {
+        "id": "fcf52f8bb46401fb",
+        "type": "debug",
+        "z": "b4347031b9923599",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 480,
+        "wires": []
+    }
+]

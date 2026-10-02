@@ -1,0 +1,232 @@
+[
+    {
+        "id": "15359fe5383ead23",
+        "type": "tab",
+        "label": "Flow 9",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9e33aab0711ae340",
+        "type": "inject",
+        "z": "15359fe5383ead23",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 290,
+        "y": 720,
+        "wires": [
+            [
+                "766a2ed92bab54c9"
+            ]
+        ]
+    },
+    {
+        "id": "766a2ed92bab54c9",
+        "type": "function",
+        "z": "15359fe5383ead23",
+        "name": "function 4",
+        "func": "// Генерируем случайную температуру от 15 до 35 градусов\nconst temp = Math.floor(Math.random() * (35 - 15 + 1)) + 15;\n\n// Получаем порог из контекста (по умолчанию 25, если ещё не задан через форму)\nconst threshold = flow.get(\"tempThreshold\") || 25;\n\nmsg.payload = temp;\nmsg.topic = temp > threshold ? \"ALERT: Превышение!\" : \"Норма\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 720,
+        "wires": [
+            [
+                "e2d1037eeefb26fa",
+                "93454547ba0a475a"
+            ]
+        ]
+    },
+    {
+        "id": "e2d1037eeefb26fa",
+        "type": "ui_gauge",
+        "z": "15359fe5383ead23",
+        "name": "",
+        "group": "4e473c61af5748fd",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "температура (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 630,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "93454547ba0a475a",
+        "type": "ui_chart",
+        "z": "15359fe5383ead23",
+        "name": "",
+        "group": "4e473c61af5748fd",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "график изменений",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 630,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e17859878881de28",
+        "type": "ui_form",
+        "z": "15359fe5383ead23",
+        "name": "",
+        "label": "",
+        "group": "4e473c61af5748fd",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "порог тревоги (°C)",
+                "value": "threshold",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "threshold": ""
+        },
+        "payload": "",
+        "submit": "сохранить порог",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 290,
+        "y": 860,
+        "wires": [
+            [
+                "e0bd54e2e4408f35"
+            ]
+        ]
+    },
+    {
+        "id": "e0bd54e2e4408f35",
+        "type": "function",
+        "z": "15359fe5383ead23",
+        "name": "function 5",
+        "func": "// Сохраняем введенный пользователем порог в flow context\nconst newThreshold = Number(msg.payload.threshold);\nflow.set(\"tempThreshold\", newThreshold);\n\nmsg.payload = \"Новый порог установлен: \" + newThreshold + \"°C\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 860,
+        "wires": [
+            [
+                "3bb63226a8bc7168"
+            ]
+        ]
+    },
+    {
+        "id": "3bb63226a8bc7168",
+        "type": "debug",
+        "z": "15359fe5383ead23",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "4e473c61af5748fd",
+        "type": "ui_group",
+        "name": "датчик температуры",
+        "tab": "ce562a901c82326a",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ce562a901c82326a",
+        "type": "ui_tab",
+        "name": "лабораторная 2",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "97a38ccf0e09d16a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
