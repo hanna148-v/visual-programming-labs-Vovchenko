@@ -148,7 +148,7 @@ https://rampoedogava050.bubbleapps.io/version-test
 Страницу `notes` с интерфейсом сгенерировал AI по промпту из раздела 4.4. 
 
 ![Страница notes в превью](../screenshots/08-preview.png)
-![Страница notes в редакторе](../screenshots/09-design.png)
+![Страница notes в превью](../screenshots/09-disign.png)
 ![Список workflows страницы notes](../screenshots/12-workflows-list.png)
 
 | Workflow | Операция | Триггер | Что делает |
