@@ -1,0 +1,80 @@
+{
+  "name": "flow-05-http",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -48
+      ],
+      "id": "cefefc96-f887-4e6a-bc3e-9d65559da720",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.chucknorris.io/jokes/random",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -64,
+        -48
+      ],
+      "id": "a30a8100-8862-402c-b14c-5d60dd0b98cb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем ответ от публичного API\nconst apiResponse = $input.first().json;\n\nreturn [{\n    json: {\n        surname: \"Вовченко\", // Твоя фамилия\n        group: \"уир241\",    // Твоя группа\n        fact: apiResponse.fact || apiResponse.value, // Факт о коте или шутка\n        length: apiResponse.length || 0,\n        retrievedAt: new Date().toISOString()\n    }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        -48
+      ],
+      "id": "92d330e5-f504-4aa7-84f7-e41ecb35f811",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9a3a5b0a-d90b-4f9c-b364-f02749130634",
+  "meta": {
+    "instanceId": "75ed35111854c23eb6c6f8850648324ff81b172d6e63638ca9c13b915b7787d9"
+  },
+  "nodeGroups": [],
+  "id": "lDzinBAXpyvrV1C4",
+  "tags": []
+}

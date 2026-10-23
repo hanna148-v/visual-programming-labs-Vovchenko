@@ -1,0 +1,64 @@
+{
+  "name": "flow-06-schedule",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// Возвращаем текущую дату и время срабатывания триггера\nreturn [{\n    json: {\n        surname: \"Вовченко\",\n        group: \"уир241\",  \n        triggeredAt: new Date().toISOString(),\n        message: \"Schedule trigger executed successfully\"\n    }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        -80
+      ],
+      "id": "7fd5ba49-eb2c-46ac-9ba7-37c74105bcda",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -224,
+        -80
+      ],
+      "id": "a2b5bbea-fbf1-43a5-b61e-7f359c9019c1",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f44f5da0-150c-4db7-95e9-ba32fe24f652",
+  "meta": {
+    "instanceId": "75ed35111854c23eb6c6f8850648324ff81b172d6e63638ca9c13b915b7787d9"
+  },
+  "nodeGroups": [],
+  "id": "oWomRRZZYAE7zZsS",
+  "tags": []
+}

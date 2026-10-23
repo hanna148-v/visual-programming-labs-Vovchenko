@@ -1,0 +1,77 @@
+{
+  "name": "flow-02-code",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "67f1eb45-db17-4018-8324-b8a9f55c9c49",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Используем const и let\nconst numbers = [12, 25, 40, 15, 33];\nlet totalSum = 0;\nlet evenCount = 0;\n\n// Цикл for для прохода по массиву\nfor (let i = 0; i < numbers.length; i++) {\n    totalSum += numbers[i];\n    \n    // Ветвление if/else для поиска четных чисел\n    if (numbers[i] % 2 === 0) {\n        evenCount++;\n    } else {\n        // Дополнительная логика\n        let diff = numbers[i] - 10;\n    }\n}\n\nlet evaluation = totalSum > 100 ? \"HIGH\" : \"NORMAL\";\n\n// Функция в n8n возвращает массив объектов в специальном формате itemList\nreturn [{\n    json: {\n        surname: \"Вовченко\", \n        group: \"уир241\",    \n        sum: totalSum,\n        evens: evenCount,\n        status: evaluation,\n        payload: \"Lab4 Code node executed successfully\"\n    }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "736fc2d8-52d8-45eb-b67a-be661e8c2cce",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        112,
+        0
+      ],
+      "id": "ac8de986-6466-40a9-9852-4cd82ad68bc7",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "2a6fb529-8253-4452-bb79-5094bf11430b",
+  "meta": {
+    "instanceId": "75ed35111854c23eb6c6f8850648324ff81b172d6e63638ca9c13b915b7787d9"
+  },
+  "nodeGroups": [],
+  "id": "SHOnhh5t8FlzHZuI",
+  "tags": []
+}
