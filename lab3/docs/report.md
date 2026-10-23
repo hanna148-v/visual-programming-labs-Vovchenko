@@ -151,17 +151,6 @@ https://rampoedogava050.bubbleapps.io/version-test
 ![Страница notes в превью](../screenshots/09-disign.png)
 ![Список workflows страницы notes](../screenshots/12-workflows-list.png)
 
-| Workflow | Операция | Триггер | Что делает |
-|---|---|---|---|
-| **Add note** | Create | клик по «Добавить заметку»; условие: значение `Dropdown Book` не пустое | Create a new thing: создаёт `ReadingNote`, поля (`book`, `date_read`, `note_text`, `rating`, `recommended`) берутся из элементов формы |
-| *(список)* | Read | загрузка страницы | Repeating Group «Все заметки» с источником `Do a search for ReadingNotes`; отдельный workflow не нужен |
-| **Open edit note** | Update, шаг 1 | клик «Редактировать» в ячейке | открывает форму редактирования и передаёт в неё выбранную заметку |
-| **Save note** | Update, шаг 2 | клик «Сохранить»; условие: значение `Dropdown Book Edit` не пустое | Make changes to a thing: записывает значения из формы редактирования в выбранную заметку |
-| **Cancel edit** | вспомогательный | клик «Отмена» в форме редактирования | закрывает форму без сохранения |
-| **Ask delete note** | Delete, шаг 1 | клик «Удалить» в ячейке | Display data in `Popup Confirm Delete` (данные `Parent group's ReadingNote`), затем Show: открывает окно подтверждения |
-| **Delete note** | Delete, шаг 2 | клик «Удалить» в окне подтверждения | Delete a thing: удаляет заметку, переданную в окно |
-| **Cancel delete** | вспомогательный | клик «Отмена» в окне подтверждения | закрывает окно, запись остаётся |
-
 **Delete:**
 
 ![Workflow Delete в редакторе](../screenshots/10-workflow-delete.png)
