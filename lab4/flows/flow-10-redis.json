@@ -1,0 +1,95 @@
+{
+  "name": "flow-10-redis",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8a6f5687-2eff-48e4-a2aa-0a10fe98dd53",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "vovchenko"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "f1238512-79fa-49ef-a4f1-1d5798b5e757",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "RQykUSrqNiSTcDgt",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "vovchenko",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "99447cc1-077b-45c8-a1ce-92938d5e0447",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "RQykUSrqNiSTcDgt",
+          "name": "Redis account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "60a4651a-4ad0-4f1b-a779-2a4544ad40ff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "75ed35111854c23eb6c6f8850648324ff81b172d6e63638ca9c13b915b7787d9"
+  },
+  "nodeGroups": [],
+  "id": "sVoz60AZ0ryUQxof",
+  "tags": []
+}
