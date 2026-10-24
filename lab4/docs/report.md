@@ -23,7 +23,7 @@
       n8nio/n8n
     ```
 * **Версия n8n:** v1.x (официальный Docker image `n8nio/n8n`)
-* **Адрес сервиса:** `http://localhost:5678`
+* **Адрес сервиса:** `http://localhost:5678`  
 ![00-version](../screenshots/00-version.png)
 ---
 
